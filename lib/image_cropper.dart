@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     return completer.future;
   }
+  final _formKey = GlobalKey<FormState>();
 
   Widget _buildImage() {
     if (isImageLoaded) {
@@ -88,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     }
-    return Center(
+    return const Center(
       child: Text('loading'),
     );
   }
@@ -150,9 +151,13 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      key: _formKey,
       appBar: AppBar(
         title: Text("Doc Scanner"),
         actions: _iconDecider(),

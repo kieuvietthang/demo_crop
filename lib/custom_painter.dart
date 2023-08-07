@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class MyImagePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawImage(image, new Offset(0, 0), Paint());
+    canvas.drawImage(image, const Offset(0, 0), Paint());
     if (pointList.isNotEmpty && !crop) {
       canvas.drawPoints(
           ui.PointMode.polygon,
@@ -42,7 +41,6 @@ class MyImagePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     throw true;
   }
 }

@@ -21,7 +21,7 @@ class _ImageCheckerState extends State<ImageChecker> {
 
   Future<PickedFile> loadImage(bool gallery) async {
     Navigator.of(context).pop();
-    final Completer<PickedFile> completer = new Completer();
+    final Completer<PickedFile> completer = Completer();
     if (gallery) {
       ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
         setState(() {
