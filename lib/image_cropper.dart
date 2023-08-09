@@ -27,12 +27,20 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isImageLoaded = false;
   int rotation = 0;
 
+  GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
   Future<void> init() async {
     image = await loadImage(File(widget.imageFile.path).readAsBytesSync());
   }
 
   Future<ui.Image> loadImage(Uint8List img) async {
-    final Completer<ui.Image> completer = new Completer();
+    final Completer<ui.Image> completer = Completer();
     ui.decodeImageFromList(img, (ui.Image img) {
       setState(() {
         isImageLoaded = true;
@@ -41,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     return completer.future;
   }
-  final _formKey = GlobalKey<FormState>();
+
+
 
   Widget _buildImage() {
     if (isImageLoaded) {
@@ -93,6 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Text('loading'),
     );
   }
+  // void _handlePanEnd(DragEndDetails details) async {
+  //   image = await crop(cropperKey: cropperKey!);
+  //   setState(() {});
+  // }
 
   List<Widget> _iconDecider() {
     if (isImageLoaded && !cropImage) {
@@ -146,20 +159,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void initState() {
-    init();
-    super.initState();
-  }
-
-
-
-  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      key: _formKey,
       appBar: AppBar(
-        title: Text("Doc Scanner"),
+        title: const Text("Doc Scanner"),
         actions: _iconDecider(),
       ),
       body: _buildImage(),

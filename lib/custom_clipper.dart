@@ -11,7 +11,7 @@ class MyClipper extends CustomClipper<Path> {
     Path path = Path();
     if(pointsList.isNotEmpty) path.moveTo(pointsList[0].dx, pointsList[0].dy);
     for(int i = 1; i < pointsList.length; i++){
-      path.lineTo(pointsList[0].dx, pointsList[0].dy);
+      path.lineTo(pointsList[i].dx, pointsList[i].dy);
     }
     path.close();
     return path;
